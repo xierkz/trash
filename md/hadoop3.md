@@ -25,7 +25,7 @@ source /etc/profile
 java -version
 ```
 
-![image-20210427160113921](C:\Users\kz\AppData\Roaming\Typora\typora-user-images\image-20210427160113921.png)
+!../img/1.png
 
 ### 二、Hadoop 安装
 
