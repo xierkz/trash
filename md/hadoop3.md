@@ -48,7 +48,7 @@ source /etc/profile
 hadoop version
 ```
 
-![2](D:\Transh\MD\img\3.png)
+![https://github.com/xierkz/trash/blob/main/md/img/3.png](https://github.com/xierkz/trash/blob/main/md/img/3.png)
 
 ##### 3.修改/usr/local/hadoop/etc/hadoop下配置文件
 
@@ -148,13 +148,13 @@ vi yarn-site.xml
 jps
 ```
 
-![4](D:\Transh\MD\img\7.png)
+![https://github.com/xierkz/trash/blob/main/md/img/2.png](https://github.com/xierkz/trash/blob/main/md/img/2.png)
 
 ```http
 localhost:9870
 ```
 
-![](D:\Transh\MD\img\5.png)
+![https://github.com/xierkz/trash/blob/main/md/img/5.png](https://github.com/xierkz/trash/blob/main/md/img/5.png)
 
 ```shell
 关闭：stop-all.sh
@@ -324,7 +324,7 @@ hadoop jar WordCount.jar
 
 ##### 4.Hadoop与Hbase版本兼容性
 
-![9](D:\Transh\MD\img\9.png)
+![https://github.com/xierkz/trash/blob/main/md/img/9.png](https://github.com/xierkz/trash/blob/main/md/img/9.png)
 
 ### 五、Hbase 安装
 
@@ -347,7 +347,7 @@ source /etc/profile
 hbase version
 ```
 
-![image-20210516014420080](D:\Transh\MD\img\image-20210516014420080.png)
+![https://github.com/xierkz/trash/blob/main/md/img/6.png](https://github.com/xierkz/trash/blob/main/md/img/6.png)
 
 ##### 3.修改/usr/local/hbase/conf/下配置文件
 
@@ -400,7 +400,7 @@ stop-all.sh
 hbase shell
 ```
 
-![](D:\Transh\MD\img\10.png)
+![https://github.com/xierkz/trash/blob/main/md/img/10.png](https://github.com/xierkz/trash/blob/main/md/img/10.png)
 
 ```txt
 list
@@ -615,7 +615,7 @@ source /etc/profile
 hive --version
 ```
 
-![image-20210511201459619](D:\Transh\MD\img\image-20210511201459619.png)
+![https://github.com/xierkz/trash/blob/main/md/img/4.png](https://github.com/xierkz/trash/blob/main/md/img/4.png)
 
 ##### 3.修改/usr/local/hive/conf下配置文件
 
@@ -843,7 +843,7 @@ export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)
 spark-shell
 ```
 
-![image-20210522234228371](D:\Transh\MD\img\image-20210522234228371.png)
+![https://github.com/xierkz/trash/blob/main/md/img/7.png](https://github.com/xierkz/trash/blob/main/md/img/7.png)
 
 ```shell
 :quit			--退出spark-shell
@@ -853,8 +853,7 @@ spark-shell
 pyspark
 ```
 
-![image-20210523002626468](D:\Transh\MD\img\image-20210523002626468.png)
-
+![https://github.com/xierkz/trash/blob/main/md/img/7.png](https://github.com/xierkz/trash/blob/main/md/img/7.png)
 ```python
 exit()/quit()
 ```
