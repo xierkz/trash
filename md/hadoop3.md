@@ -25,7 +25,7 @@ source /etc/profile
 java -version
 ```
 
-![1](D:\Transh\MD\img\1.png)
+![https://github.com/xierkz/trash/blob/main/md/img/1.png](https://github.com/xierkz/trash/blob/main/md/img/1.png)
 
 ### 二、Hadoop 安装
 
