@@ -25,7 +25,7 @@ source /etc/profile
 java -version
 ```
 
-![1](https://github.com/xierkz/trash/blob/main/md/img/1.png)
+![1](D:\Transh\MD\img\1.png)
 
 ### 二、Hadoop 安装
 
@@ -48,7 +48,7 @@ source /etc/profile
 hadoop version
 ```
 
-![image-20210427160514636](C:\Users\kz\AppData\Roaming\Typora\typora-user-images\image-20210427160514636.png)
+![2](D:\Transh\MD\img\3.png)
 
 ##### 3.修改/usr/local/hadoop/etc/hadoop下配置文件
 
@@ -148,13 +148,13 @@ vi yarn-site.xml
 jps
 ```
 
-![image-20210427163402025](C:\Users\kz\AppData\Roaming\Typora\typora-user-images\image-20210427163402025.png)
+![4](D:\Transh\MD\img\7.png)
 
 ```http
 localhost:9870
 ```
 
-![image-20210427161836510](C:\Users\kz\AppData\Roaming\Typora\typora-user-images\image-20210427161836510.png)
+![](D:\Transh\MD\img\5.png)
 
 ```shell
 关闭：stop-all.sh
@@ -324,7 +324,7 @@ hadoop jar WordCount.jar
 
 ##### 4.Hadoop与Hbase版本兼容性
 
-![image-20210427183800863](C:\Users\kz\AppData\Roaming\Typora\typora-user-images\image-20210427183800863.png)
+![9](D:\Transh\MD\img\9.png)
 
 ### 五、Hbase 安装
 
@@ -347,13 +347,15 @@ source /etc/profile
 hbase version
 ```
 
-![image-20210427183236899](C:\Users\kz\AppData\Roaming\Typora\typora-user-images\image-20210427183236899.png)
+![image-20210516014420080](D:\Transh\MD\img\image-20210516014420080.png)
 
 ##### 3.修改/usr/local/hbase/conf/下配置文件
 
 ```shell
 vi hbase-env.sh
 ```
+
+并将最后一行注释去除
 
 ```shell
 export JAVA_HOME=/usr/local/jdk
@@ -398,7 +400,7 @@ stop-all.sh
 hbase shell
 ```
 
-![image-20210427184344695](C:\Users\kz\AppData\Roaming\Typora\typora-user-images\image-20210427184344695.png)
+![](D:\Transh\MD\img\10.png)
 
 ```txt
 list
@@ -594,23 +596,26 @@ public class deleteTable {
 
 ### 六、Hive 安装
 
-##### 1.下载apache-hive-2.3.8-bin.tar.gz
+##### 1.下载apache-hive-3.1.2-bin.tar.gz
 
 ```http
-https://mirrors.tuna.tsinghua.edu.cn/apache/hive/hive-2.3.8/apache-hive-2.3.8-bin.tar.gz
+https://mirrors.tuna.tsinghua.edu.cn/apache/hive/hive-3.1.2/apache-hive-3.1.2-bin.tar.gz
 ```
 
-##### 2.解压apache-hive-2.3.8-bin.tar.gz
+##### 2.解压apache-hive-3.1.2-bin.tar.gz
 
 ```shell
-tar -zxvf apache-hive-2.3.8-bin.tar.gz
-mv apache-hive-2.3.8-bin hive
+tar -zxvf apache-hive-3.1.2-bin.tar.gz
+mv apache-hive-3.1.2-bin hive
 sudo mv hive /usr/local
 sudo vi /etc/profile
 export HIVE_HOME=/usr/local/hive
 export PATH=$PATH:${JAVA_HOME}/bin:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${HIVE_HOME}/bin
 source /etc/profile
+hive --version
 ```
+
+![image-20210511201459619](D:\Transh\MD\img\image-20210511201459619.png)
 
 ##### 3.修改/usr/local/hive/conf下配置文件
 
@@ -672,21 +677,54 @@ sudo mv mysql-connector-java-5.1.49.jar /usr/local/hive/lib
 ##### 6.启动mysql shell
 
 ```shell
+sudo gedit /etc/mysql/mysql.conf.d/mysqld.cnf		//配置文件
 service mysql start
-mysql -u root -p
+sudo mysql -u root -p
 123456
-grant all on *.* to 用户名@localhost identified by 'hive';		/* 此处为密码*/
+grant all on *.* to root@localhost identified by 'hive';		/* 此处为密码*/
 flush privileges;
+system clear MySQL Linux 清屏命令
 ```
 
-##### 7.启动 hive
+##### 7.一个很无聊的错误
+
+```java
+Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument(ZLjava/lang/String;Ljava/lang/Object;)V
+	at org.apache.hadoop.conf.Configuration.set(Configuration.java:1357)
+	at org.apache.hadoop.conf.Configuration.set(Configuration.java:1338)
+	at org.apache.hadoop.mapred.JobConf.setJar(JobConf.java:518)
+	at org.apache.hadoop.mapred.JobConf.setJarByClass(JobConf.java:536)
+	at org.apache.hadoop.mapred.JobConf.<init>(JobConf.java:430)
+	at org.apache.hadoop.hive.conf.HiveConf.initialize(HiveConf.java:5141)
+	at org.apache.hadoop.hive.conf.HiveConf.<init>(HiveConf.java:5099)
+	at org.apache.hadoop.hive.common.LogUtils.initHiveLog4jCommon(LogUtils.java:97)
+	at org.apache.hadoop.hive.common.LogUtils.initHiveLog4j(LogUtils.java:81)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:699)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:318)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:232)
+```
+
+​		反正很无赖
+
+```text
+HIVE和HADOOP内置的jar包版本不一致导致，
+jar包分别在：hive/lib/guava-19.0.jar和share/hadoop/common/lib/guava-27.0-jre.jar
+我们删除掉旧版本的19，将新版本拷贝进去，再次启动hive。
+```
+
+##### 8.启动 hive
 
 ```shell
 start-all.sh
 hive
 ```
 
-##### 8.基本操作
+##### 9.基本操作
 
 ```sql
 create database if not exists hive;/*创建hive数据库*/
@@ -717,7 +755,7 @@ create table if not exists hive.usr3(
        partitioned by(city string,state string); 
 ```
 
-##### 9.Hive 编程
+##### 10.Hive 编程
 
 ```sql
 create table docs(line string);
@@ -731,10 +769,92 @@ order by word;
 select * from word_count;
 ```
 
-##### 10.内部表和外部表介绍
+##### 11.内部表和外部表介绍
 
 ```txt
 内部表：会将数据移动到数据仓库指向的路径，删除时，会将元数据和数据一起删除。
 外部表：仅记录数据所在的路径，删除时，只删除元数据，不删除数据本身，更安全，更方便数据共享。
 ```
 
+##### 12.伪分布式毛病
+
+```shell
+Query ID = kz_20210516034201_b7bda3c8-7b60-4ec8-9126-789f035adc11
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+2021-05-16 03:42:03,004 INFO  [c9fb57f7-e60c-435c-8a58-7982947f72d1 main] client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+2021-05-16 03:42:03,031 INFO  [c9fb57f7-e60c-435c-8a58-7982947f72d1 main] client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+Starting Job = job_1621107063277_0002, Tracking URL = http://kpl:8088/proxy/application_1621107063277_0002/
+Kill Command = /home/kz/zip/hadoop/bin/mapred job  -kill job_1621107063277_0002
+Hadoop job information for Stage-1: number of mappers: 0; number of reducers: 0
+2021-05-16 03:42:07,238 Stage-1 map = 0%,  reduce = 0%
+Ended Job = job_1621107063277_0002 with errors
+Error during job, obtaining debugging information...
+FAILED: Execution Error, return code 2 from org.apache.hadoop.hive.ql.exec.mr.MapRedTask
+MapReduce Jobs Launched: 
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 FAIL
+Total MapReduce CPU Time Spent: 0 msec
+```
+
+```shell
+set hive.exec.mode.local.auto=true;		——namenode内存空间不够，jvm不够新job启动
+```
+
+### 七、Spark安装
+
+##### 1. 下载spark(python3.8以上选择3.x.x)
+
+```http
+https://archive.apache.org/dist/spark/spark-2.4.8/spark-2.4.8-bin-without-hadoop.tgz
+https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-without-hadoop.tgz
+```
+
+##### 2. 安装spark
+
+```shell
+tar -zxvf spark-2.4.0-bin-without-hadoop.tgz
+mv spark-2.4.0-bin-without-hadoop spark
+sudo mv spark /usr/local/
+sudo vi /etc/profile
+export SPARK_HOME=/usr/local/spark
+export PATH=$PATH:${JAVA_HOME}/bin:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${SPARK_HOME}/bin
+```
+
+##### 3. 配置spark
+
+```shell
+cd /usr/local/spark/conf
+cp spark-env.sh.template spark-env.sh
+vi spark-env.sh
+insert
+export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)
+```
+
+##### 4. 启动spark命令
+
+```shell
+spark-shell
+```
+
+![image-20210522234228371](D:\Transh\MD\img\image-20210522234228371.png)
+
+```shell
+:quit			--退出spark-shell
+```
+
+```shell
+pyspark
+```
+
+![image-20210523002626468](D:\Transh\MD\img\image-20210523002626468.png)
+
+```python
+exit()/quit()
+```
