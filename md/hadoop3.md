@@ -25,7 +25,7 @@ source /etc/profile
 java -version
 ```
 
-![](https://github.com/xierkz/trash/raw/main/md/img/1.png)
+![……](https://raw.githubusercontent.com/xierkz/trash/main/md/img/1.png)
 
 ### 二、Hadoop 安装
 
